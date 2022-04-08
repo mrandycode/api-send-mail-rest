@@ -6,19 +6,24 @@ class NodeMailerService {
     constructor() { }
 
     async createTransport(email) {
-        // create reusable transporter object using the default SMTP transport
-        const transporter = nodemailer.createTransport({
-            host: config.hostSmtp,
-            port: config.portSmtp,
-            secure: true, // true for 465, false for other ports
-            auth: {
-                user: config.emailUser, // generated ethereal user
-                pass: config.emailPassword, // generated ethereal password
-            },
-        });
 
-        await transporter.sendMail(email);
-        return { message: 'Correo enviado correctamente ' + email.to };
+        try { // create reusable transporter object using the default SMTP transport
+            const transporter = nodemailer.createTransport({
+                host: config.hostSmtp,
+                port: config.portSmtp,
+                secure: true, // true for 465, false for other ports
+                auth: {
+                    user: config.emailUser, // generated ethereal user
+                    pass: config.emailPassword, // generated ethereal password
+                },
+            });
+
+            await transporter.sendMail(email);
+            return { code: 200, message: 'Correo enviado correctamente ' + email.to };
+        } catch (err) {
+            console.log(err.Error);
+            return { code: 500, message: err };
+        }
 
     }
 
