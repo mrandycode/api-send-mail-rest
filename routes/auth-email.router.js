@@ -7,7 +7,7 @@ const NodeMailerService = require('../services/nodemailer.service');
 const service = new NodeMailerService();
 
 router.post('/recovery/password',
-    // validatorHandler(sendEmailSchema, 'body'),
+    validatorHandler(sendEmailSchema, 'body'),
     checkApiKey,
     async (req, res, next) => {
         try {
