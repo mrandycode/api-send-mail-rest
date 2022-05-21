@@ -16,6 +16,8 @@ const config = {
     emailPassword: process.env.EMAIL_PASS,
     hostSmtp: process.env.HOST_SMTP,
     portSmtp: process.env.PORT_SMTP,
+    emailSupport: process.env.EMAIL_USER_SUPPORT,
+    emailPasswordSupport: process.env.EMAIL_PASS_SUPPORT,
 };
 
 module.exports = { config };

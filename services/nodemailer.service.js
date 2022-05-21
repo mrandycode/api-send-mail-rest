@@ -5,7 +5,7 @@ class NodeMailerService {
 
     constructor() { }
 
-    async createTransport(email) {
+    async createTransport(email, variable) {
 
         try { // create reusable transporter object using the default SMTP transport
             const transporter = nodemailer.createTransport({
@@ -13,8 +13,8 @@ class NodeMailerService {
                 port: config.portSmtp,
                 secure: true, // true for 465, false for other ports
                 auth: {
-                    user: config.emailUser, // generated ethereal user
-                    pass: config.emailPassword, // generated ethereal password
+                    user: config[variable.user], // generated ethereal user
+                    pass: config[variable.pass], // generated ethereal password
                 },
             });
 
@@ -27,7 +27,7 @@ class NodeMailerService {
 
     }
 
-    async sendMail(req) {
+    async sendMail(req, variable) {
         const emailBody = {
             from: req.from,
             to: req.to,
@@ -35,7 +35,7 @@ class NodeMailerService {
             text: req.text,
             html: req.html,
         };
-        return await this.createTransport(emailBody);
+        return await this.createTransport(emailBody, variable);
     }
 }
 
