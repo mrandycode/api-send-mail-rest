@@ -3,7 +3,7 @@ const cors = require('cors');
 const { config } = require('./config/config');
 const routerApi = require('./routes');
 const port = config.port || 3000;
-const whitelist = [config.corsWhiteList];
+const whitelist = config.corsWhiteList;
 
 const app = express();
 app.use(express.json());

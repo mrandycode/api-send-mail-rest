@@ -11,7 +11,7 @@ const config = {
     dbHost: process.env.DB_HOST,
     jwtSecret: process.env.JWT_SECRET,
     apiKey: process.env.API_KEY,
-    corsWhiteList: process.env.CORS_WHITE_LIST,
+    corsWhiteList: process.env.CORS_WHITE_LIST.split(' '),
     emailUser: process.env.EMAIL_USER,
     emailPassword: process.env.EMAIL_PASS,
     hostSmtp: process.env.HOST_SMTP,
